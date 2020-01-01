@@ -29,6 +29,12 @@ body {
   margin-top: 10px;
 }
 
+.description{
+  color: white;
+  text-align: center;
+  margin: auto;
+}
+
 .grid {
   width: 150px;
   line-height: 0;

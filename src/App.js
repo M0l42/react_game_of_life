@@ -1,5 +1,15 @@
 import React from 'react';
 import './App.css';
+import {isMobile} from 'react-device-detect';
+
+class SetInfo extends React.Component {
+    render(){
+        if (isMobile) {
+            return(<div className="description">{window.flask_description}</div>);
+        }
+        return(<h2>{window.flask_description}</h2>);
+    }
+}
 
 class Box extends React.Component {
     selectBox = () => {
@@ -54,8 +64,14 @@ class Main extends React.Component{
     constructor() {
         super();
         this.speed = 100;
-        this.rows = 30;
-        this.cols = 50;
+        if (isMobile) {
+            this.cols = 20;
+            this.rows = 40;
+        }
+        else {
+            this.rows = 30;
+            this.cols = 50;
+        }
         this.title = window.flask_title;
 
         this.state = {
@@ -134,7 +150,7 @@ class Main extends React.Component{
         return (
             <div>
                 <h1>{this.title}</h1>
-                <h2>{window.flask_description}</h2>
+                <SetInfo/>
                 <div className="center">
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <button type="button" className="btn btn-primary" onClick={() => this.playButton()}>Play</button>
